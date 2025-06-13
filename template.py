@@ -15,7 +15,7 @@ LIST_FILES = [
     "src/config/__init__.py",
     "src/config/config.py",
     "src/config/dev_config.py",
-    "src/config/production.py",
+    "src/config/production_config.py",
     # controllers
     "src/controllers/__init__.py",
     "src/controllers/auth_controller.py",

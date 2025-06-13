@@ -7,11 +7,10 @@ LIST_FILES = [
     ".env",
     "app.py",
     "init_setup.py",
-    "init_setup.py",
     "README.md",
     "LICENSE",
     "requirements.txt",
-    "src/__init__.py"
+    "src/__init__.py",
     # config folder
     "src/config/__init__.py",
     "src/config/config.py",

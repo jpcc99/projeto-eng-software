@@ -6,7 +6,7 @@ LIST_FILES = [
     "Dockerfile",
     ".env",
     "app.py",
-    "init_setup.py",
+    "init_setup.sh",
     "README.md",
     "LICENSE",
     "requirements.txt",
@@ -20,7 +20,7 @@ LIST_FILES = [
     "src/controllers/__init__.py",
     "src/controllers/auth_controller.py",
     # middlewares
-    "src/middlewares/__init__.py"
+    "src/middlewares/__init__.py",
     # models
     "src/models/__init__.py",
     "src/models/usr_model.py",

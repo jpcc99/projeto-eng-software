@@ -6,8 +6,12 @@ LIST_FILES = [
     "Dockerfile",
     ".env",
     "app.py",
+<<<<<<< HEAD
     "init_setup.py",
     "README.md",
+=======
+    "init_setup.py" "README.md",
+>>>>>>> d41ea6f0635e12cee6ee42e3c2d772e40b6cbcc7
     "LICENSE",
     "requirements.txt",
     "src/__init__.py"

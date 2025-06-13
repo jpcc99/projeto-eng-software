@@ -3,33 +3,11 @@ import os
 PROJECT_NAME = "estoque_ai"
 
 LIST_FILES = [
-    "Dockerfile",
-    ".env",
     "app.py",
     "init_setup.sh",
     "README.md",
     "LICENSE",
     "requirements.txt",
-    "src/__init__.py",
-    # config folder
-    "src/config/__init__.py",
-    "src/config/config.py",
-    "src/config/dev_config.py",
-    "src/config/production_config.py",
-    # controllers
-    "src/controllers/__init__.py",
-    "src/controllers/auth_controller.py",
-    # middlewares
-    "src/middlewares/__init__.py",
-    # models
-    "src/models/__init__.py",
-    "src/models/usr_model.py",
-    # services
-    "src/services/__init__.py",
-    "src/services/jwt_service.py",
-    # routes and utils
-    "src/routes.py",
-    "src/utils.py",
 ]
 
 for file_path in LIST_FILES:

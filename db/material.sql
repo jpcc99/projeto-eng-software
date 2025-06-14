@@ -1,4 +1,4 @@
-CREATE TABLE (
+CREATE TABLE material (
   id_material INT,
   codigo VARCHAR(100) NOT NULL,
   descricao VARCHAR(200),

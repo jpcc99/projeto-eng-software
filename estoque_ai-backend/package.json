@@ -1,0 +1,16 @@
+{
+  "name": "estoque_ai-backend",
+  "version": "1.0.0",
+  "description": "Backend do estoque_ai, projeto de Engenharia de Software",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Edson Elias, João Pedro da Costa Carvalho",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "pg-promise": "^11.14.0"
+  }
+}

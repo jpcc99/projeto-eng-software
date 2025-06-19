@@ -22,15 +22,19 @@ app.use(bodyParser.json())
 // Rotas 
 
 // Rotas de autenticação
-app.post('/registro', authController.registrar);
+app.post('/registrar', authController.registrar);
 app.post('/login', authController.login);
 
 // Rotas de usuário
-app.get('/usuarios/:matricula', usuarioController.obterUsuario);
+app.get('/usuario/:matricula', usuarioController.obterUsuario);
 
 // Rotas de materiais
 app.get('/materiais', materialController.listarMateriais);
 app.get('/materiais/:id', materialController.obterMaterial);
+
+
+app.post('/material/registrar', materialController.registrarMaterial);
+app.post('/material/alterar', materialController.alterarMaterial);
 
 // Teste de conexão com o banco
 app.get('/teste-db', async (req, res) => {

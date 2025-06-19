@@ -26,15 +26,15 @@ module.exports = {
   */
   async login(req, res) {
     try {
-      const { matricula, senha } = req.body;
+      const { email, senha } = req.body;
       // Busca usuário
-      const usuario = await Usuario.buscarPorMatricula(matricula);
+      const usuario = await Usuario.buscarPorEmail(email);
       if (!usuario) {
-        return res.status(401).json({ erro: 'Matrícula ou senha inválidos' });
+        return res.status(401).json({ erro: 'Email ou senha inválidos' });
       }
       // Verifica senha (sem hash para protótipo)
       if (usuario.senha !== senha) {
-        return res.status(401).json({ erro: 'Matrícula ou senha inválidos' });
+        return res.status(401).json({ erro: 'Email ou senha inválidos' });
       }
       // Retorna dados básicos do usuário (em produção, retornaria um token JWT)
       const { senha: _, ...usuarioSemSenha } = usuario;

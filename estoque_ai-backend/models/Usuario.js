@@ -34,6 +34,16 @@ class Usuario {
   }
 
   /**
+  * Busca um usuário por email
+  * @param {string} email
+  * @returns {Promise<Object|null>} Usuário encontrado ou null
+  */
+  static async buscarPorEmail(email) {
+    const { rows } = await db.query('SELECT * FROM usuario WHERE email = $1', [email]);
+    return rows[0] || null;
+  }
+
+  /**
   * Associa um usuário a um setor
   * @param {string} matricula
   * @param {number} idSetor

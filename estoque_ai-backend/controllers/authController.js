@@ -6,14 +6,14 @@ module.exports = {
   */
   async registrar(req, res) {
     try {
-      const { matricula, nome, cpf, email, senha, tipo } = req.body;
+      const { matricula, nome, cpf, email, senha } = req.body;
       // Verifica se usuário já existe
       const usuarioExistente = await Usuario.buscarPorMatricula(matricula);
       if (usuarioExistente) {
         return res.status(400).json({ erro: 'Matrícula já cadastrada' });
       }
       // Cria o usuário (sem hash de senha para protótipo)
-      const usuario = await Usuario.criar(matricula, nome, cpf, email, senha, true, tipo);
+      const usuario = await Usuario.criar(matricula, nome, cpf, email, senha, true, 'aluno');
       res.status(201).json(usuario);
     } catch (erro) {
       console.error(erro);

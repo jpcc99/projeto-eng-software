@@ -19,6 +19,7 @@ class Usuario {
       RETURNING *;
     `;
     const values = [matricula, nome, cpf, email, senha, ativo, tipo];
+    console.log(values);
     const { rows } = await db.query(query, values);
     return rows[0];
   }

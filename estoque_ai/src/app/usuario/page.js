@@ -8,7 +8,7 @@ export default function UsuarioPage(){
     const router = useRouter();
 
     const handleGoToMateriais = () => {
-        router.push("/materias")
+        router.push("/materiais")
     };
 
     return (

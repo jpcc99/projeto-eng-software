@@ -41,7 +41,8 @@ export default function LoginPage() {
                 <input
                     type="email"
                     name="email"
-                    placeholder={formData.email}
+                    placeholder="E-mail"
+                    value={formData.email}
                     onChange={handleChange}
                     required
                     className={styles.input}

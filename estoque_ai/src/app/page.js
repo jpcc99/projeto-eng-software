@@ -1,8 +1,31 @@
-export default function Home() {
+"use client";
 
-  return (
-    <div>
-      <h1>Hello Wolrd from frontend</h1>
+import { useRouter } from "next/navigation";
+import styles from "./home.module.css";
+
+export default function Home(){
+  const router = useRouter();
+
+  const goToLogin = () => {
+    router.push("/login")
+  };
+
+  const goToCadastro = () => {
+    router.push("/cadastro")
+  };
+
+  return(
+    <div className={styles.container}>
+      <h1 className={styles.title}>Bem vidno ao sistema de Estoque</h1>
+      <p>Escolha uma opção abaixo:</p>
+      <div className={styles.buttons}>
+        <button onClick={goToLogin} className={styles.button}>
+          Login
+        </button>
+        <button onClick={goToCadastro} className={styles.button}>
+          Cadastro
+        </button>
+      </div>
     </div>
-  );
+  )
 }

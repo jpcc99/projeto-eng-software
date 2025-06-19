@@ -1,10 +1,15 @@
-const pgp = require('pg-promise')
+const Pool = require('pg').Pool;
+require('dotenv').config();
 
-const username = "username";
-const password = "12345678";
-const host = "";
-const port = "";
-const database = "estoque_ai_db" ;
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+});
 
-const db = pgp(`postgres://${username}:${password}@${host}:${port}/${database}`);
+module.exports = {
+  query: (text, params) => pool.query(text, params),
+};
 

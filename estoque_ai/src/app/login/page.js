@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./login.module.css";
+import { api } from "../../../lib/api";
 
 
 export default function LoginPage() {
     const router = useRouter();
 
+    const [loginError, setError] = useState('');
+    const [usuario, setUsuario] = useState({});
     const [formData, setFormData] = useState({
         email: "",
         senha: "",
@@ -21,6 +24,16 @@ export default function LoginPage() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        api.login(formData.email, formData.senha)
+            .then((data) => {
+                console.log(data);
+                setUsuario(data);
+            })
+            .catch((err) => {
+                console.error(err);
+                setError(err);
+            })
 
         //login sucessido
         if(formData.email && formData.senha){

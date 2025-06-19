@@ -10,44 +10,50 @@ export default function LoginPage() {
     const router = useRouter();
 
     const [loginError, setError] = useState('');
-    const [usuario, setUsuario] = useState({});
+    const [loading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         email: "",
         senha: "",
     });
     const handleChange = (e) => {
-        const {name , value} = e.target;
+        const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,
             [name]: value,
         }));
     };
-    const handleSubmit = (e) => {
+
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        api.login(formData.email, formData.senha)
-            .then((data) => {
-                console.log(data);
-                setUsuario(data);
-            })
-            .catch((err) => {
-                console.error(err);
-                setError(err);
-            })
+        if (!formData.email || !formData.senha) {
+            setError("Preencha todos os campos");
+            return;
+        }
 
-        //login sucessido
-        if(formData.email && formData.senha){
-            console.log("Login realizado:", formData);
-            alert("Login realizado com sucesso!");
+        if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            setError("Por favor, insira um e-mail válido");
+            return;
+        }
 
-            //redirecionar para pagina usuario
-            router.push("/usuario")
-        } else{
-            alert("Preencha todos os campos");
+        setIsLoading(true);
+        setError("");
+
+        try {
+            const userData = await api.login(formData.email, formData.senha);
+            // Em produção, armazena o token JWT
+            localStorage.setItem('usuario', JSON.stringify(userData));
+            router.push("/usuario");
+        } catch (err) {
+            setError(err.message || "Erro ao fazer login");
+        } finally {
+            setIsLoading(false);
         }
     };
 
-    return(
+    return (
         <div className={styles.container}>
             <h1 className={styles.title}>Login</h1>
             <form onSubmit={handleSubmit} className={styles.form}>

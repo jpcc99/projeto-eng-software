@@ -4,17 +4,17 @@ const cors = require('cors');
 
 
 const app = express();
-const port = 5000;
+const port = 3001;
 
 
 app.use(cors())
 
 
-app.get("/", (req, res) => {
-    return res.json({message: "API is working"});
-});     
+app.get("/", (_req, res) => {
+  return res.json({ message: "Hello World from the API" });
+});
 
 
 app.listen(port, () => {
-    console.log(`API listening on port ${port}`);
+  console.log(`API listening on port ${port}`);
 });

@@ -105,7 +105,7 @@ export default function MateriaisPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>CRUD de Materiais com Dropdown</h1>
+      <h1 className={styles.title}>Materias </h1>
 
       <form onSubmit={handleSubmit} className={styles.form}>
         <label>

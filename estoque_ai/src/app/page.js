@@ -16,7 +16,7 @@ export default function Home(){
 
   return(
     <div className={styles.container}>
-      <h1 className={styles.title}>Bem vidno ao sistema de Estoque</h1>
+      <h1 className={styles.title}>Bem-vindo ao Estoque_ai</h1>
       <p>Escolha uma opção abaixo:</p>
       <div className={styles.buttons}>
         <button onClick={goToLogin} className={styles.button}>

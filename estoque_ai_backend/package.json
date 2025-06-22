@@ -1,0 +1,16 @@
+{
+  "name": "estoque_ai_backend",
+  "version": "1.0.0",
+  "description": "Backend do estoque_ai, projeto de Engenharia de Software - IFPE Campus Jaboatão dos Guararapes",
+  "license": "MIT",
+  "author": "Edson Elias, João Pedro da Costa Carvalho",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "scripts": {
+    "dev": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

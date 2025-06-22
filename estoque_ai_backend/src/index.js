@@ -20,7 +20,7 @@ app.get('/', (_req, res) => {
 const UserController = require('./controllers/userController').UserController;
 
 app.get("/users", (req, res) => UserController.getAllUsers(req, res));
-
+app.post("/user/", (req, res) => UserController.getUserByRegister(req, res));
 
 app.listen(PORT, () => {
   console.log(`API listening on PORT ${PORT}`);

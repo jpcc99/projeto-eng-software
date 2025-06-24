@@ -13,6 +13,9 @@ app.use(morgan('dev'));
 //app.use(morgan('combined'));
 app.use(express.json());
 
+// Conecta ao banco 
+require('./config/db');
+
 app.get('/', (_, res) => res.status(200).json({ message: "Hello World" }));
 
 module.exports = app;

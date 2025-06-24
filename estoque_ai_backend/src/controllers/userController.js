@@ -1,4 +1,5 @@
 const UserModel = require("../models/UserModel");
+const AuthController = require("../controllers/authController").AuthController;
 
 class UserController {
   static async getAllUsers(req, res) {
@@ -13,8 +14,9 @@ class UserController {
 
   static async getUserByRegister(req, res) {
     try {
-      const { register_number, requesting_user } = req.body;
-      const user = await UserModel.getUserByRegisterNumber(register_number, requesting_user);
+      const matricula = await AuthController.verifyToken(req, res);
+      const user = await UserModel.getUserByRegisterNumber(matricula);
+      res.status(200).json({ user });
     } catch (err) {
       console.error(err);
       res.status(404).json({ error: "Usuário não encontrado" });

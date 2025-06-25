@@ -8,7 +8,7 @@ class Usuario {
   static async criar(matricula, nome, email, senha, tipoUsuario = EnumTiposUsuario.ALUNO, idSetor = "1") {
     try {
       const senha_hash = await bcrypt.hash(senha, 10);
-      const querry = `INSERT INTO usuario (matricula, nome_usuario, senha_hash, email, tipo_usuario, id_setor) 
+      const querry = `INSERT INTO usuario (matricula, nome_usuario, email, senha_hash, tipo_usuario, id_setor) 
         VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
       const values = [matricula, nome, email, senha_hash, tipoUsuario, idSetor];
       const result = await db.querry(querry, values);
@@ -35,6 +35,7 @@ class Usuario {
   static async verificaCredenciais(email, senha) {
     try {
       const querry = `SELECT * FROM usuario WHERE email = $1`;
+      console.log(email);
       const result = await db.querry(querry, [email]);
       if (result.rows.length === 0) {
         return ApiResponse.error("Credenciais Inválidas", 401);

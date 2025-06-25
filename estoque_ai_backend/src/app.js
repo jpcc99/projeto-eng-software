@@ -23,6 +23,4 @@ require('./config/db');
 // Configura as rotas
 app.use('/api', routes);
 
-app.get('/', (_, res) => res.status(200).json({ message: "Hello World" }));
-
 module.exports = app;

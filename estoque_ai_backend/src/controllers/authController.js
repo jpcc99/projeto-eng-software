@@ -1,13 +1,36 @@
 const Usuario = require('../models/Usuario');
 const { gerarToken } = require('../config/auth');
 const ApiResponse = require('../utils/apiResponse');
-const { } = requre('../utils/')
 
 class AuthController {
   static async cadastro(req, res) {
+    // TODO talvez criar um middleware para isso depois
+    const camposNecessarios = ['matricula', 'nome', 'email', 'senha'];
+    const camposFaltando = [];
+
+    for (const campo of camposNecessarios) {
+      if (!(campo in req.body)) {
+        camposFaltando.push(campo);
+      }
+    }
+
+    if (camposFaltando.length > 0) {
+      return res.json(ApiResponse.error(`Campos Necessarios Faltando: ${camposFaltando}`, 401));
+    }
+
     const { matricula, nome, email, senha } = req.body;
 
-    let result = await checkEmail(email);
+    let result = await checkMatricula(matricula);
+    if (!result.success) {
+      return res.status(result.statusCode || 401).json(result);
+    }
+
+    result = await checkNome(nome);
+    if (!result.success) {
+      return res.status(result.statusCode || 401).json(result);
+    }
+
+    result = await checkEmail(email);
     if (!result.success) {
       return res.status(result.statusCode || 401).json(result);
     }
@@ -27,6 +50,7 @@ class AuthController {
 
     result = await Usuario.criar(matricula, nome, email, senha);
     if (!result.success) {
+      result = ApiResponse.error("Não foi possível cadastrar o usuário", 401);
       return res.status(result.statusCode || 401).json(result);
     }
     return res.status(result.statusCode || 200).json(result.message);
@@ -62,6 +86,7 @@ class AuthController {
     }));
   }
 
+  // TODO
   static async getMe(req, res) {
     const result = await Usuario.buscaPorMatricula(req.user.matricula);
     if (!result.success) {
@@ -77,6 +102,24 @@ class AuthController {
       idSetor: usuario.idSetor,
     }));
   }
+}
+
+async function checkMatricula(matricula) {
+  const errMsg = "Matricula inválida";
+  const validationRegex = /^[a-zA-Z0-9-]+$/;
+  if (!validationRegex.test(matricula)) {
+    return ApiResponse.error(errMsg);
+  }
+  return ApiResponse.success()
+}
+
+async function checkNome(nome) {
+  const errMsg = "Nome inválido";
+  const validationRegex = /^(?! )[a-zA-Zà-úÀ-Ú' -]+(?<! )$/;
+  if (!validationRegex.test(nome)) {
+    return ApiResponse.error(errMsg);
+  }
+  return ApiResponse.success()
 }
 
 async function checkEmail(email) {

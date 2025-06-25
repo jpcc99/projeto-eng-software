@@ -9,7 +9,7 @@ class Usuario {
     try {
       const senha_hash = await bcrypt.hash(senha, 10);
       const querry = `INSERT INTO usuario (matricula, nome_usuario, senha_hash, email, tipo_usuario, id_setor) 
-        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
+        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
       const values = [matricula, nome, email, senha_hash, tipoUsuario, idSetor];
       const result = await db.querry(querry, values);
       return ApiResponse.success(result.rows[0]);

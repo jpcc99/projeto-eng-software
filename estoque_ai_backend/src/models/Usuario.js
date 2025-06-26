@@ -35,7 +35,6 @@ class Usuario {
   static async verificaCredenciais(email, senha) {
     try {
       const querry = `SELECT * FROM usuario WHERE email = $1`;
-      console.log(email);
       const result = await db.querry(querry, [email]);
       if (result.rows.length === 0) {
         return ApiResponse.error("Credenciais Inválidas", 401);

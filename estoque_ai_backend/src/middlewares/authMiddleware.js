@@ -2,9 +2,10 @@ const { veirificarToken } = require('../config/auth');
 const ApiResponse = require('../utils/apiResponse');
 
 const authRequired = (req, res, next) => {
+  console.log(req.headers);
   // Pega o token do header da req do cliente
   // O ? do Obj['key']? é para retornar undefined caso não encontre
-  const token = req.headers['Authorization']?.split(' ')[1];
+  const token = req.headers['authorization']?.split(' ')[1];
 
   if (!token) {
     res.status(401).json(ApiResponse.error('Token de autenticação não fornecido'));

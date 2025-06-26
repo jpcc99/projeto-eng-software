@@ -1,4 +1,4 @@
-CREATE TYPE TIPO AS ENUM ('Usuario', 'Coodernador', 'ControleMateriais', 'Admin');
+CREATE TYPE TIPO AS ENUM ('Usuario', 'Coodenador', 'ControleMateriais', 'Admin');
 
 CREATE TABLE usuario (
   matricula VARCHAR(20),

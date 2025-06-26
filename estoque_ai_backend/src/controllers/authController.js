@@ -59,6 +59,19 @@ class AuthController {
 
   // Faz a auth pro login
   static async login(req, res) {
+    const camposNecessarios = ['email', 'senha'];
+    const camposFaltando = [];
+
+    for (const campo of camposNecessarios) {
+      if (!(campo in req.body)) {
+        camposFaltando.push(campo);
+      }
+    }
+
+    if (camposFaltando.length > 0) {
+      return res.json(ApiResponse.error(`Campos Necessarios Faltando: ${camposFaltando}`, 401));
+    }
+
     const { email, senha } = req.body;
 
     let result = await checkEmail(email);

@@ -6,6 +6,7 @@ CREATE TABLE usuario (
   email VARCHAR(100) NOT NULL UNIQUE,
   senha_hash VARCHAR(255) NOT NULL,
   tipo_usuario TIPO NOT NULL,
+  ativo BOOLEAN DEFAULT TRUE,
   id_setor INT,
   CONSTRAINT pk_usuario PRIMARY KEY(matricula),
   CONSTRAINT fk_setor FOREIGN KEY (id_setor)

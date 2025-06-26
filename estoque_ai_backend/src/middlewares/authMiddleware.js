@@ -2,7 +2,6 @@ const { veirificarToken } = require('../config/auth');
 const ApiResponse = require('../utils/apiResponse');
 
 const authRequired = (req, res, next) => {
-  console.log(req.headers);
   // Pega o token do header da req do cliente
   // O ? do Obj['key']? é para retornar undefined caso não encontre
   const token = req.headers['authorization']?.split(' ')[1];

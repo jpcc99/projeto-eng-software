@@ -32,6 +32,10 @@ class MaterialController {
 
   static async listar(req, res) {
     const result = await Material.listar();
+    /** TODO
+      * Limitar informações de materiais listados a depender do tipo 
+      * de Usuario
+      */
     if (!result.success) {
       console.error(result.message);
       return res.status(result.statusCode || 404).json(ApiResponse.error("Não foi possível listar materiais"));

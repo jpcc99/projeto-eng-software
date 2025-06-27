@@ -7,7 +7,7 @@ const EnumTiposUsuario = require('../utils/tipoUsuario');
 
 router.get('/', authRequired, SetorController.listar);
 router.get('/:sigla/coordenador', authRequired, SetorController.buscaCoordenador);
-router.post('/cadastro', authRequired, checaTipoDeUsuario(EnumTiposUsuario.ADMIN, EnumTiposUsuario.COORDENADOR), SetorController.cadastro);
+router.post('/cadastro', authRequired, checaTipoDeUsuario(EnumTiposUsuario.ADMIN), SetorController.cadastro);
 
 
 module.exports = router;

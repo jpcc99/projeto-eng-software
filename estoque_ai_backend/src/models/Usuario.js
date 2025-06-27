@@ -1,7 +1,7 @@
 const db = require('../config/db');
 const bcrypt = require('bcrypt');
 const ApiResponse = require('../utils/apiResponse');
-const { EnumTiposUsuario } = require('../utils/checkTipoUsuario.js');
+const EnumTiposUsuario = require('../utils/tipoUsuario.js');
 
 
 class Usuario {

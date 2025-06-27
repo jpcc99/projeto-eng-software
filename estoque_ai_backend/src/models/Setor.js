@@ -1,7 +1,7 @@
 const db = require('../config/db');
 const ApiResponse = require('../utils/apiResponse');
 const Usuário = require('../models/Usuario');
-const { EnumTiposUsuario } = require('../utils/checkTipoUsuario');
+const EnumTiposUsuario = require('../utils/tipoUsuario');
 
 class Setor {
   static async criar(nome, sigla) {

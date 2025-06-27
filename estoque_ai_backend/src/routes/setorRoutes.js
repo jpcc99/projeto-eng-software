@@ -3,7 +3,7 @@ const router = express.Router();
 const AuthController = require('../controllers/authController');
 const SetorController = require('../controllers/setorController');
 const { authRequired, checaTipoDeUsuario } = require('../middlewares/authMiddleware');
-const { EnumTiposUsuario } = require('../utils/checkTipoUsuario');
+const EnumTiposUsuario = require('../utils/tipoUsuario');
 
 router.get('/', authRequired, SetorController.listar);
 router.get('/:sigla/coordenador', authRequired, SetorController.buscaCoordenador);

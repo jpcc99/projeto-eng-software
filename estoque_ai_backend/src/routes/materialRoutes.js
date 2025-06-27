@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const MaterialController = require('../controllers/materialController');
 const { authRequired, checaTipoDeUsuario } = require('../middlewares/authMiddleware');
-const { EnumTiposUsuario } = require('../utils/checkTipoUsuario');
+const EnumTiposUsuario = require('../utils/tipoUsuario');
 
 router.get('/', authRequired, MaterialController.listar);
 router.post('/cadastrar', authRequired, checaTipoDeUsuario(

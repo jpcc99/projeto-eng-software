@@ -17,7 +17,7 @@ class MaterialController {
       return res.json(ApiResponse.error(`Campos Necessarios Faltando: ${camposFaltando}`, 401));
     }
 
-    const { nome, descricao, unidade_medida, codigoproduto: codigo_material } = req.body;
+    const { nome, descricao, unidade_medida, codigo_material } = req.body;
 
     // TODO add checks para cada campo
     // TODO add e cacl estoque_max & estoque_min

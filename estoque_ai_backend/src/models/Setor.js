@@ -6,7 +6,7 @@ const EnumTiposUsuario = require('../utils/tipoUsuario');
 class Setor {
   static async criar(nome, sigla) {
     try {
-      const querry = "INSERT INTO (nome_setor, sigla_setor) VALUES ($1, $2)";
+      const querry = `INSERT INTO setor (nome_setor, sigla_setor) VALUES ($1, $2)`
       const values = [nome, sigla];
       const result = await db.querry(querry, values);
       return ApiResponse.success(result.rows[0], "Setor criado com sucesso");
@@ -19,12 +19,16 @@ class Setor {
     const querry = "SELECT * FROM setor WHERE id_setor <> 1";
     try {
       const result = await db.querry(querry, []);
-      const setores = result.rows.map((setor) => {
-        return {
-          nome: setor.nome,
-          sigla: setor.sigla
-        };
-      });
+      if (!(result.rowCount > 0)) {
+        throw Error("Não foi possível consultar setores");
+      }
+      const setores = [];
+      for (const setor of result.rows) {
+        setores.push({
+          nome: setor.nome_setor,
+          sigla: setor.sigla_setor
+        });
+      }
       return ApiResponse.success(setores);
     } catch (err) {
       return ApiResponse.error("Não foi possível consultar setores");

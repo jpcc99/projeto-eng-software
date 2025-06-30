@@ -90,7 +90,8 @@ class AuthController {
     }
 
     const usuario = result.data;
-    const token = gerarToken(usuario.matricula, usuario.tipoUsuario);
+    const { matricula, tipo_usuario } = usuario;
+    const token = gerarToken(matricula, tipo_usuario);
     return res.json(ApiResponse.success({
       token,
     }));

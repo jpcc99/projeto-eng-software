@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const AuthController = require('../controllers/authController');
+
 const SetorController = require('../controllers/setorController');
 const { authRequired, checaTipoDeUsuario } = require('../middlewares/authMiddleware');
 const EnumTiposUsuario = require('../utils/tipoUsuario');

@@ -46,9 +46,9 @@ class SetorController {
   static async listar(req, res) {
     const result = await Setor.listar();
     if (!result.success) {
-      return res.status(result.statusCode || 401).json(result.message);
+      return res.status(result.statusCode || 404).json(result.message);
     }
-    return res.status(result.statusCode || 200).json(result.data);
+    return res.json(result);
   }
 
   static async buscaCoordenador(req, res) {
@@ -69,7 +69,7 @@ class SetorController {
 
 async function checkNomeSetor(nome = "") {
   const errMsg = "Nome inválido";
-  const validationRegex = /^(?! )[a-zA-Zà-úÀ-Ú' -]+(?<! )$/;
+  const validationRegex = /^(?! )[a-zA-Zà-úÀ-ÚãõÃÕâêîôûÂÊÎÔÛáéíóúÁÉÍÓÚçÇ' ,-]+(?<! )$/;
   if (!validationRegex.test(nome)) {
     return ApiResponse.error(errMsg, 401);
   }

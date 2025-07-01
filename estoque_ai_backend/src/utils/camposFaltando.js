@@ -1,16 +1,15 @@
 // TODO refatorar para usar a nova util
 const ApiResponse = require("./apiResponse");
 
-async function checaCamposFaltando(camposNecessários = [], req = {}) {
+async function checaCamposFaltando(camposNecessários = [], target = {}) {
   const camposFaltando = [];
 
-  const body = req?.body;
-  if (!body) {
+  if (!target) {
     return ApiResponse.error("Body não existe na requisição");
   }
 
   for (const campo of camposNecessários) {
-    if (!(campo in body)) {
+    if (!(campo in target)) {
       camposFaltando.push(campo);
     }
   }

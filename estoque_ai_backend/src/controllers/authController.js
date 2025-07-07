@@ -1,26 +1,18 @@
 const Usuario = require('../models/Usuario');
 const { gerarToken } = require('../config/auth');
 const ApiResponse = require('../utils/apiResponse');
+const checaCamposFaltando = require('../utils/camposFaltando');
 
 class AuthController {
   static async cadastro(req, res) {
-    // TODO talvez criar um middleware para isso depois
-    const camposNecessarios = ['matricula', 'nome', 'email', 'senha'];
-    const camposFaltando = [];
-
-    for (const campo of camposNecessarios) {
-      if (!(campo in req.body)) {
-        camposFaltando.push(campo);
-      }
-    }
-
-    if (camposFaltando.length > 0) {
-      return res.json(ApiResponse.error(`Campos Necessarios Faltando: ${camposFaltando}`, 401));
+    let result = await checaCamposFaltando(['matricula', 'nome', 'email', 'senha'], req.body);
+    if (!result.success) {
+      return res.status(result.statusCode || 401).json({ error: result.message });
     }
 
     const { matricula, nome, email, senha } = req.body;
 
-    let result = await checkMatricula(matricula);
+    result = await checkMatricula(matricula);
     if (!result.success) {
       return res.status(result.statusCode || 401).json(result);
     }
@@ -59,22 +51,14 @@ class AuthController {
 
   // Faz a auth pro login
   static async login(req, res) {
-    const camposNecessarios = ['email', 'senha'];
-    const camposFaltando = [];
-
-    for (const campo of camposNecessarios) {
-      if (!(campo in req.body)) {
-        camposFaltando.push(campo);
-      }
-    }
-
-    if (camposFaltando.length > 0) {
-      return res.json(ApiResponse.error(`Campos Necessarios Faltando: ${camposFaltando}`, 401));
+    let result = await checaCamposFaltando(['email', 'senha'], req.body);
+    if (!result.success) {
+      return res.status(result.statusCode || 401).json({ error: result.message });
     }
 
     const { email, senha } = req.body;
 
-    let result = await checkEmail(email);
+    result = await checkEmail(email);
     if (!result.success) {
       return res.status(result.statusCode || 401).json(result);
     }

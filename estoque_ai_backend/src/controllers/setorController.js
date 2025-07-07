@@ -1,29 +1,24 @@
 const Setor = require('../models/Setor');
 const ApiResponse = require('../utils/apiResponse');
 
+const checaCamposFaltando = require('../utils/camposFaltando');
+const { checkRegex, regex } = require('../utils/checkRegex');
+
 class SetorController {
   static async cadastro(req, res) {
-    const camposNecessarios = ['nome', 'sigla'];
-    const camposFaltando = [];
-
-    for (const campo of camposNecessarios) {
-      if (!(campo in req.body)) {
-        camposFaltando.push(campo);
-      }
-    }
-
-    if (camposFaltando.length > 0) {
-      return res.json(ApiResponse.error(`Campos necessários faltando: ${camposFaltando}`));
-    }
-
-    const { nome, sigla } = req.body;
-
-    let result = await checkNomeSetor(nome);
+    let result = checaCamposFaltando(['nome', 'sigla'], req.body);
     if (!result.success) {
       return res.status(result.statusCode || 401).json(result);
     }
 
-    result = await checkSigla(sigla);
+    const { nome, sigla } = req.body;
+
+    result = await checkRegex(nome, regex.setor.nome, "Nome inválido");
+    if (!result.success) {
+      return res.status(result.statusCode || 401).json(result);
+    }
+
+    result = await checkRegex(sigla, regex.setor.sigla, "Sigla inválida. Deve conter apenas número e/ou letras matriculas");
     if (!result.success) {
       return res.status(result.statusCode || 401).json(result);
     }
@@ -54,7 +49,7 @@ class SetorController {
   static async buscaCoordenador(req, res) {
     const { sigla } = req.params;
 
-    let result = await checkSigla(sigla);
+    let result = await checkRegex(sigla, regex.setor.sigla, "Sigla inválida. Deve conter apenas número e/ou letras matriculas");
     if (!result.success) {
       return res.status(result.statusCode || 401).json(result.message);
     }
@@ -65,24 +60,6 @@ class SetorController {
     }
     return res.status(result.statusCode || 200).json(result.message)
   }
-}
-
-async function checkNomeSetor(nome = "") {
-  const errMsg = "Nome inválido";
-  const validationRegex = /^(?! )[a-zA-Zà-úÀ-ÚãõÃÕâêîôûÂÊÎÔÛáéíóúÁÉÍÓÚçÇ' ,-]+(?<! )$/;
-  if (!validationRegex.test(nome)) {
-    return ApiResponse.error(errMsg, 401);
-  }
-  return ApiResponse.success()
-}
-
-async function checkSigla(sigla = "") {
-  const errMsg = "Sigla inválida. Deve conter apenas número e/ou letras matriculas";
-  const validationRegex = /^[A-Z0-9]{1,10}$/;
-  if (!validationRegex.test(sigla)) {
-    return ApiResponse.error(errMsg, 401);
-  }
-  return ApiResponse.success()
 }
 
 module.exports = SetorController;

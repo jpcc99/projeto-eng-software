@@ -7,9 +7,8 @@ const setorRoutes = require('../routes/setorRoutes');
 const usuarioRoutes = require('../routes/usuarioRoutes');
 const materialRoutes = require('../routes/materialRoutes');
 const solicitacoesRoutes = require('../routes/solicitacoesRoutes');
-const planejamentoRoutes = require('../planejamentoRoutes');
-const relatorioRoutes = require('../relatorioRoutes');
-const notificacaoRoutes = require('../notificacaoRoutes');
+const planejamentoRoutes = require('../routes/planejamentoRoutes');
+const notificacaoRoutes = require('../routes/notificacaoRoutes');
 
 // Usa as rotas importadas
 router.use('/auth', authRoutes);
@@ -18,7 +17,6 @@ router.use('/usuario', usuarioRoutes);
 router.use('/material', materialRoutes);
 router.use('/solicitacao', solicitacoesRoutes);
 router.use('/planejamento', planejamentoRoutes);
-router.use('/relatorio', relatorioRoutes);
 router.use('/notificacoes', notificacaoRoutes);
 
 module.exports = router;

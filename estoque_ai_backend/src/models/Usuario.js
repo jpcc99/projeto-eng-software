@@ -25,7 +25,6 @@ class Usuario {
       if (result.rows.length === 0) {
         return ApiResponse.error("Usuário não encontrado", 404);
       }
-
       return ApiResponse.success(result.rows[0]);
     } catch (err) {
       return ApiResponse.error(err.message);
@@ -60,6 +59,29 @@ class Usuario {
     } catch (err) {
       return ApiResponse.error(err.message);
     }
+  }
+
+  static async mudarTipo(matricula, novoTipo) {
+    const querry = `UPDATE Usuario
+      SET tipo_usuario = $1
+      WHERE matricula = $2 RETURNING *`;
+    const values = [novoTipo, matricula];
+    try {
+      const result = await db.querry(querry, values);
+      if (result.rowCount === 0) {
+        throw Error("Não possível mudar tipo do usuário");
+      }
+    } catch (err) {
+      console.error(err);
+      return ApiResponse.error(err.message, 500);
+    }
+  }
+
+
+  static async addSetor(matricula = "", id_setor = 1) {
+    const querry = `UPDATE Usuario
+      SET tipo`;
+    return ApiResponse.error("TODO", 404);
   }
 }
 

@@ -4,13 +4,12 @@ const SolicitacoesController = require('../controllers/solicitacoesController');
 const { authRequired, checaTipoDeUsuario } = require('../middlewares/authMiddleware');
 const EnumTiposUsuario = require('../utils/tipoUsuario');
 
-/*
 router.get('/setor/:sigla', authRequired, checaTipoDeUsuario(
   EnumTiposUsuario.ADMIN,
   EnumTiposUsuario.CONTROLE_MATERIAIS,
   EnumTiposUsuario.COORDENADOR,
-), SolicitacoesController);
-*/
+), SolicitacoesController.listarPorSetor);
+
 router.post('/criar', authRequired, checaTipoDeUsuario(
   EnumTiposUsuario.ADMIN,
   EnumTiposUsuario.COORDENADOR,

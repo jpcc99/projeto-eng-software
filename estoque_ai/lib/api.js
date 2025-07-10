@@ -31,8 +31,6 @@ export const api = {
     return response.json();
   },
 
-  // 👇👇👇 ADICIONAR ISSO ABAIXO
-
   getUsuarios: async () => {
     const response = await fetch(`${API_URL}/usuario`);
     if (!response.ok) {

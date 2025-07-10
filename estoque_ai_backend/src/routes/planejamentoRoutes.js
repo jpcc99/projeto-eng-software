@@ -5,9 +5,9 @@ const { authRequired, checaTipoDeUsuario } = require('../middlewares/authMiddlew
 const EnumTiposUsuario = require('../utils/tipoUsuario');
 
 // Rotas para coordenadores
-router.post('/', authRequired, checkUserType('Coordenador'), PlanejamentoController.criar);
-router.get('/setor', authRequired, checkUserType('Coordenador'), PlanejamentoController.listarPorSetor);
-router.get('/historico-consumo', authRequired, checkUserType('Coordenador'), PlanejamentoController.historicoConsumo);
+router.post('/', authRequired, checaTipoDeUsuario('Coordenador'), PlanejamentoController.criar);
+router.get('/setor', authRequired, checaTipoDeUsuario('Coordenador'), PlanejamentoController.listarPorSetor);
+router.get('/historico-consumo', authRequired, checaTipoDeUsuario('Coordenador'), PlanejamentoController.historicoConsumo);
 
 // Rota pública para visualização
 router.get('/:id', authRequired, PlanejamentoController.buscar);

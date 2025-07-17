@@ -54,7 +54,6 @@ export default function AuthForm({ isLogin, apiEndpoint, redirectPath, successMe
       });
 
       const data = await response.json();
-      console.table(data);
 
       if (!response.ok) {
         throw new Error(data.message || "Alguma coisa deu errado");
@@ -63,7 +62,7 @@ export default function AuthForm({ isLogin, apiEndpoint, redirectPath, successMe
       // Pro login, vamos armazenar o token JWT 
       if (isLogin) {
         const ONE_HOUR = 3600000;
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('token', data.data.token);
         localStorage.setItem('token_expire', new Date().getTime() + ONE_HOUR);
       }
 

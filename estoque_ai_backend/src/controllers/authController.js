@@ -89,13 +89,13 @@ class AuthController {
     }
 
     const usuario = result.data;
-    return res.json(ApiResponse.success({
+    const usuarioResponse = {
       matricula: usuario.matricula,
-      nome: usuario.nome,
+      nome_usuario: usuario.nome_usuario,
       email: usuario.email,
-      tipoUsuario: usuario.tipoUsuario,
-      idSetor: usuario.idSetor,
-    }));
+      tipo_usuario: usuario.tipo_usuario,
+    };
+    return res.json(ApiResponse.success(usuarioResponse));
   }
 }
 

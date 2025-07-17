@@ -17,7 +17,7 @@ export function getToken() {
 
 export function clearToken() {
   localStorage.removeItem('token');
-  localStorage.getItem('token_expiry');
+  localStorage.removeItem('token_expire');
 }
 
 export function isAuthenticated() {

@@ -8,10 +8,7 @@ const routes = require('./routes/');
 const app = express();
 
 // Middlewares 
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true
-}));
+app.use(cors());
 app.use(morgan('dev'));
 // Se estiver em produção use a opção abaixo
 //app.use(morgan('combined'));

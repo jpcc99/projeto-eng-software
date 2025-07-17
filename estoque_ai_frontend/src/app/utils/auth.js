@@ -1,6 +1,6 @@
 export function getToken() {
   const token = localStorage.getItem('token');
-  const expiry = localStorage.getItem('token_expiry');
+  const expiry = localStorage.getItem('token_expire');
 
   if (!token || !expiry) {
     return null;

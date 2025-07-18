@@ -38,7 +38,6 @@ class MaterialController {
       * de Usuario
       */
     if (!result.success) {
-      console.error(result.message);
       return res.status(result.statusCode || 404).json(ApiResponse.error("Não foi possível listar materiais"));
     }
     return res.status(result.statusCode || 200).json(result);

@@ -16,9 +16,12 @@ class Material {
   }
 
   static async listar() {
-    const querry = `SELECT * FROM Material ORDER_BY nome_material`;
+    const querry = `SELECT * FROM material ORDER BY nome_material`;
     try {
       const result = await db.querry(querry, []);
+      if (result.rowCount === 0) {
+        throw Error("Nenhum Material")
+      }
       return ApiResponse.success(result.rows);
     } catch (err) {
       return ApiResponse.error(err.message);

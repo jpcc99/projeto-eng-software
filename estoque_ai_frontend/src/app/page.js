@@ -1,7 +1,18 @@
+"use client"
+
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
+import { isAuthenticated } from './utils/auth';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Home() {
+  const router = useRouter();
+  useState(() => {
+    if (isAuthenticated()) {
+      router.push("/dashboard");
+    }
+  }, []);
   return (
     <div className='min-h-scren bg-gray-50'>
       <Navbar />

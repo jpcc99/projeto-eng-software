@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "init_db": "node src/config/init_db.js",
+    "fill_db": "node src/config/fill_db.js",
     "test_db": "node src/config/db.js"
   },
   "devDependencies": {

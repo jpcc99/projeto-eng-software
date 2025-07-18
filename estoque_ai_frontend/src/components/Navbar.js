@@ -80,7 +80,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-sm">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link href="/" className="text-xl font-semibold text-gray-800">
+        <Link href={isLoggedIn ? "/dashboard" : "/"} className="text-xl font-semibold text-gray-800">
           Estoque_ai
         </Link>
 
@@ -123,7 +123,7 @@ export default function Navbar() {
                           </div>
                         ))
                       ) : (
-                        <p className="px-4 py-2 text-sm text-gray-500">No notifications</p>
+                        <p className="px-4 py-2 text-sm text-gray-500">Nenhuma notificação</p>
                       )}
                     </div>
                   </div>
